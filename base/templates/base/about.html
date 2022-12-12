@@ -1,0 +1,15 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <div class="header-bar">
+            <a href="{% url 'tasks' %}">&#8592; Назад</a>
+        </div>
+
+        <p><h3>Этот веб-ресурс создан для регистрации и зполнения данных тайных покупателей Profpoint.</h3></p>
+        <p><h3>По возникающим вопросам обращайтесь в поддержку. <a href="https://profpoint.ru/">Сюда</a></h3></p>
+        <p><h5>Created with Python 3.0, Django 3, HTML and CSS</h5></p>
+    {% else %}
+        <a href="{% url 'login' %}">Войти</a>
+    {% endif %}
+{% endblock content %}

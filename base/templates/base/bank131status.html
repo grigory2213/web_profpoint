@@ -1,0 +1,37 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% if request.user.profile.nalog_status == 'SZ'%}
+            <div class="header-bar">
+                <a href="{% url 'tasks' %}">&#8592; Назад</a>
+            </div>
+
+            <p><h3>Вы указали свой налоговый статус - как Cамозанятый. Пожалуйста, привяжитесь к банку 131.</h3></p>
+        {% elif request.user.profile.nalog_status == 'IP'%}
+            <div class="header-bar">
+                <a href="{% url 'tasks' %}">&#8592; Назад</a>
+            </div>
+
+            <p><h3>Вы указали свой налоговый статус - как ИП. Пожалуйста, привяжитесь к банку 131.</h3></p>
+
+        {% elif request.user.profile.nalog_status == 'FL' %}
+            <div class="header-bar">
+                <a href="{% url 'tasks' %}">&#8592; Назад</a>
+            </div>
+
+            <p><h3>Вы указали свой налоговый статус - как Физлицо. Пожалуйста, привяжитесь к банку 131.</h3></p>
+        
+        {% else %}
+            <div class="header-bar">
+                <a href="{% url 'tasks' %}">&#8592; Назад</a>
+            </div>
+
+            <p><h3>Вы не указали свой налоговый статуc.</h3></p>
+
+        {% endif %}
+
+    {% else %}
+        <a href="{% url 'login' %}">Войти</a>
+    {% endif %}
+{% endblock content %}

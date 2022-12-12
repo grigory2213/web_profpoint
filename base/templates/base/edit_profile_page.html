@@ -1,0 +1,21 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+
+    <div class="header-bar">
+        <h1>Изменить профиль</h1>
+        
+        <a href="{% url 'tasks' %}">&#8592; Назад</a>
+        
+    </div>
+  
+    <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="button" type="submit" value="Обновить">
+        </form>
+        
+    </div>
+
+{% endblock content %}

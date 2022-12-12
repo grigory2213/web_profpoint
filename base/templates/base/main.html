@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+        <!-- Yandex.Metrika counter -->
+        <script type="text/javascript" >
+            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+            ym(86445597, "init", {
+                 clickmap:true,
+                 trackLinks:true,
+                 accurateTrackBounce:true,
+                 webvisor:true
+            });
+        </script>
+        <!-- /Yandex.Metrika counter -->
+        <noscript><div><img src="https://mc.yandex.ru/watch/86445597" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+        <title>TaskMaster</title>
+        <meta name="google-site-verification" content="kvig0lRZzgIYLH2KJQ_bKx0bsXpRW3YB2tXpoUFpk_Y" />
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link id="mystylesheet" rel="stylesheet" type="text/css" href="{% static 'base/css/main.css' %}">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Allison&family=Inconsolata:wght@200;300&display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="{% static 'base/favicons/favicon.png' %}"/>
+
+    </head>
+
+    <body>
+        
+    
+ 
+
+
+        <div class="container">
+            {% block content %}
+            {% endblock content %}
+        </div>
+
+        <div class="social-content">
+            {% block footer %}
+                <ul class="social list-reset">
+                    <li class="social-item"><a href="https://www.facebook.com" class="social-link social-link-fb" target="_blank" aria-label="Link to Facebook"></a></li>
+                    <li class="social-item"><a href="https://github.com/grigory2213" class="social-link social-link-git" target="_blank" aria-label="Link to Github"></a></li>
+                    <li class="social-item"><a href="https://twitter.com" class="social-link social-link-tw" target="_blank" aria-label="Link to Twitter"></a></li>
+                    <li class="social-item"><a href="https://vk.com/profpointmysteryclub" class="social-link social-link-vk" target="_blank" aria-label="Link to social-link-vk"></a></li>
+                </ul>
+                <div id="slider">
+                    <div id="runner"></div>
+                <button class="btn btn-light" onclick="swapStyle('{% static 'base/css/main.css' %}')">Light</button><button class="btn btn-dark" onclick="swapStyle('{% static 'base/css/dark.css' %}')">Dark</button>
+                
+                </div>
+                <div id="res"></div>
+            {% endblock footer %}
+        </div>
+       
+        <script type="text/javascript">
+            var setTheme = localStorage.getItem('theme')
+            console.log('theme:', setTheme)
+            if(setTheme==null){
+                swapStyle('{% static 'base/css/main.css' %}')
+            }else{
+                swapStyle(setTheme)
+            }
+    
+    
+            function swapStyle(sheet){
+                document.getElementById('mystylesheet').href = sheet
+                localStorage.setItem('theme', sheet)
+            }
+    
+        </script>
+    </body>
+
+</html>

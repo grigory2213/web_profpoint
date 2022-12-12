@@ -1,0 +1,45 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <html lang="ru">
+            <head>
+                <meta charset="utf-8" />
+                <title>Виджет токенизации карточного номера.</title>
+
+                <meta name="viewport" content="width=device-width,initial-scale=1" />
+                <meta name="format-detection" content="telephone=no" />
+
+                <!-- Подключение скрипта и стилей виджета. -->
+                <link
+                href="https://widget.bank131.ru/card-tokenizer.css"
+                rel="stylesheet"
+                />
+                <script src="https://widget.bank131.ru/card-tokenizer.js" defer></script>
+            </head>
+
+            <body>
+                <div id="bank131-card-tokenizer"></div>
+
+                <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    if (!window.Bank131CardTokenizer) {
+                    return;
+                    }
+
+                    const cardTokenizer = new Bank131CardTokenizer('6bbfb259c3acfc340ea864bbc0255f1a13efc8acb5610340533b3f0592b203b5'); //token
+
+                    cardTokenizer.onTokenizationSuccess = function (cardToken) {
+                    // Обработка события успешного получения токена.
+                    };
+
+                    cardTokenizer.render();
+                });
+                </script>
+            </body>
+        </html>
+
+    {% else %}
+        <a href="{% url 'login' %}">Войти</a>
+    {% endif %}
+{% endblock content %}

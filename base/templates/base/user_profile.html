@@ -1,0 +1,92 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="header-bar">
+        <div>
+            <h1>Профиль</h1>
+            
+        </div>
+        <a href="{% url 'tasks' %}">&#8592; Назад</a>
+    </div>
+
+    <div class="card-body">
+        <!-- Show Profile Avatar -->
+        {% if profile.profile_pic %}
+          <img src="{{ profile.profile_pic.url }}" height=100 width=100><br><br>
+        {% else %}
+            <img src="{% static 'base\images\profile\user.png' %}" height=100 width=100><br><br>
+        {% endif %}
+
+        <!-- Show User Username -->
+        <p><strong>Имя пользователя:</strong> {{ profile.user.username }}</p><br><br>
+
+        <!-- Show Profile Biography -->
+        <p><strong>Почта для оплаты:</strong> {{ profile.email }}</p><br><br>
+
+        <!-- Show Profile INN URL -->
+        {% if profile.INN %}
+        <p><strong>ИНН:</strong> {{ profile.INN }}</p><br><br>
+        {% endif %}
+
+        <!-- Show Profile Nalog_status URL -->
+        {% if profile.nalog_status %}
+            <p><strong>Налоговый статус:</strong> {{ profile.nalog_status }}</p><br><br>
+        {% endif %}
+
+        <!-- bank131 getting_status  -->
+        {% if user.id == profile.user.id %}
+        <a href="{% url 'bank131status' %}"><button class="button">Привязать к банку 131</button></a>
+        {% endif %}
+
+        <!-- bank131 getting_status  -->
+        {% if user.id == profile.user.id %}
+        <a href="{% url 'bank131card' %}"><button class="button">Добавить карту для получения выплат</button></a>
+        {% endif %}
+
+
+
+        <!-- Show Profile Telegram URL -->
+        {% if profile.telegram %}
+            <p><strong>Telegram:</strong> {{ profile.telegram }}</p><br><br>
+        {% endif %}
+
+
+
+        <p><strong>Достижения:</strong></p><br><br>
+
+        {% if number_tasks >= 1 %}
+        <img src="https://img.icons8.com/doodle/48/000000/laurel-wreath.png" title="Create your first task">
+        {% else %} 
+        <img style="opacity:0.5;" src="https://img.icons8.com/doodle/48/000000/laurel-wreath.png" title="Create your first task">
+        {% endif %}
+        {% if number_completed_tasks >= 1 %}
+        <img src="https://img.icons8.com/emoji/48/000000/bullseye.png" title="Complete your first task">
+        {% else %}
+        <img style="opacity:0.5;" src="https://img.icons8.com/emoji/48/000000/bullseye.png" title="Complete your first task">
+        {% endif %}
+        {% if number_completed_tasks >= 10 %}
+        <img src="https://img.icons8.com/clouds/48/000000/trophy--v2.png" title="Complete 10 tasks">
+        {% else %} 
+        <img style="opacity:0.5;" src="https://img.icons8.com/clouds/48/000000/trophy--v2.png" title="Complete 10 tasks">
+        {% endif %}
+        {% if number_completed_tasks >= 50 %} 
+        <img src="https://img.icons8.com/color/48/000000/bouldering.png" title="Complete 50 tasks">
+        {% else %} 
+        <img style="opacity:0.5;" src="https://img.icons8.com/color/48/000000/bouldering.png" title="Complete 50 tasks">
+        {% endif %}
+        {% if number_notes >= 3 %} 
+        <img src="https://img.icons8.com/emoji/48/000000/graduation-cap-emoji.png" title="Keep 3 notes">
+        {% else %} 
+        <img style="opacity:0.5;" src="https://img.icons8.com/emoji/48/000000/graduation-cap-emoji.png" title="Keep 3 notes">
+        {% endif %}
+        <br><br>
+        
+        <!-- Edit Profile -->
+        {% if user.id == profile.user.id %}
+        <a href="{% url 'edit_user_profile' profile.id %}"><button class="button">Изменить</button></a>
+        {% endif %}
+
+
+    </div>
+{% endblock content %}
