@@ -1,0 +1,1 @@
+{"amount_details":{"amount":133330,"currency":"rub"},"customer":{"reference":"uuidtest123123123"},"metadata":{"order":"12345"}}

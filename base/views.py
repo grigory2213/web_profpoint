@@ -153,7 +153,7 @@ class CreateProfilePageView(CreateView):
     model = Profile
     
     template_name = 'base/create_profile.html'
-    fields = ['profile_pic', 'bio', 'facebook', 'twitter', 'instagram']
+    fields = ['profile_pic', 'email', 'INN', 'nalog_status', 'telegram']
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)

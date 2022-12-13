@@ -1,0 +1,31 @@
+echo {"amount_details":{"amount":278728,"currency":"rub"},"metadata":{"order":"33333"}} > myfile.txt
+
+openssl dgst -sha256 -sign private.pem -out sha256.sign myfile.txt
+
+base64 sha256.sign
+
+curl --location --request POST 'https://demo.bank131.ru/api/v1/session/create' \
+--header 'Content-Type: application/json' \
+--header 'X-PARTNER-PROJECT: profpoint' \
+--header 'X-PARTNER-SIGN: Zh76dKyg4sjqMcvn4WDji+gKGd8s3F5oY2s8/L59GeG092mKuVMQWym3ldPrC1XEbPuBvp3002R0fSVeqU1dartd/v1+zA5mL8bFNg3tAKk7yqyQZv+DbHOLYOjOFZ4u8tyhrZgIJSi5jdVwHW+jPXFEbcp7DQ+oBJ+tVt38nkBsGJiebWGdmdlkB1luOxOik9z/aB6PqamjwxWCC9SdQxqOZqnMeo+YrfESwX4tv8UIYe87EXoLmxORMiawSuG0WUnp1TjC10gYJ5QR6Fo2CrT1J/DI6lpAUjN+nSlNEb1mvekTY7n4YsONPizYPsdDUU7MqAenRM48W6a8ZVTj4Q==' \
+--data-raw '{"amount_details":{"amount":278728,"currency":"rub"},"metadata":{"order":"33333"}}'
+
+
+curl --location --request POST 'https://demo.bank131.ru/api/v1/session/create' \
+> --header 'Content-Type: application/json' \
+> --header 'X-PARTNER-PROJECT: profpoint' \
+> --header 'X-PARTNER-SIGN: HTdPi6tqDZei1CnwEpJ2wxQKLaMC3EzZylJ4aTD6JeWo/0s+ou5F8acax94iQS2qU/qkDRguRASc2rSJjpIuzDPYNgfiRrFqIjfh7l61ux9RLR8tRQryI6GwyukGOKu44q3Q/5CxhUzlAPWJmz+vZSimVFNwGmcgnHf2+EStTQVFjMsafS/QV9C9qokYG1BnTJIfgJ6DNdZikBTwz/KYYELQEb18iJOOzx27aP3ExadqP43btXuEhh638+2Qk31RHkX7epDtFEHPbgMbzwQHCe/6LYEuzhr6nwlb71HkIIDHeczoIhw51VoP540C7IIG//rmyBVoY/TmlLFuANzQyw==' \
+> --data-raw '{"amount_details":{"amount":133330,"currency":"rub"},"customer":{"reference":"uuidtest123123123"},"metadata":{"order":"12345"}}
+'
+curl --location --request POST 'https://demo.bank131.ru/api/v1/session/create' \
+> --header 'Content-Type: application/json' \
+> --header 'X-PARTNER-PROJECT: profpoint' \
+> --header 'X-PARTNER-SIGN: HTdPi6tqDZei1CnwEpJ2wxQKLaMC3EzZylJ4aTD6JeWo/0s+ou5F8acax94iQS2qU/qkDRguRASc2rSJjpIuzDPYNgfiRrFqIjfh7l61ux9RLR8tRQryI6GwyukGOKu44q3Q/5CxhUzlAPWJmz+vZSimVFNwGmcgnHf2+EStTQVFjMsafS/QV9C9qokYG1BnTJIfgJ6DNdZikBTwz/KYYELQEb18iJOOzx27aP3ExadqP43btXuEhh638+2Qk31RHkX7epDtFEHPbgMbzwQHCe/6LYEuzhr6nwlb71HkIIDHeczoIhw51VoP540C7IIG//rmyBVoY/TmlLFuANzQyw==' \
+> --data-raw '{"amount_details":{"amount":133330,"currency":"rub"},"customer":{"reference":"uuidtest123123123"},"metadata":{"order":"12345"}}
+'
+
+curl --location --request POST 'https://demo.bank131.ru/api/v1/session/create' \
+--header 'Content-Type: application/json' \
+--header 'X-PARTNER-PROJECT: profpoint' \
+--header 'X-PARTNER-SIGN: S9GLnWwuIhsEH8MUPiGCrPCGXfK93WU76/3JBczXhkRkYpXL8X4f67J4KGJpwUjVRN7Z8XLv1rF+oO4AVPqgrhYL7Gswn2k4e30qaZkqKxTynzR2TKdevnu8piTws/X1byVPaYduUrFqGSgxPK3Kro+bUf2tb1kaZp0FYH0+kHSTdIUjru0/yx/BMszrDKYmCSwkBLfleITh1KlVs7Bd2YG/IszUWJbWYhz6YTG5iBZG3GNln96abkxq9Vkgqez+Z6zB038CW9MComz+Svm9COIxRNkbRV9HJCdQp/pxHXMKAXHRpL0Ik4GcrG/nOh+1dPck+x31TdR43Siol34/YA==' \
+--data-raw '{"amount_details":{"amount":133330,"currency":"rub"},"customer":{"reference":"uuidtest123123123"},"metadata":{"order":"12345"}}'
