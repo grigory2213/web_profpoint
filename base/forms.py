@@ -50,7 +50,7 @@ class ProfileForm(ModelForm):
     
     class Meta:
         model = Profile
-        fields=['email', 'profile_pic', 'INN', 'nalog_status', 'telegram']
+        fields=['email', 'profile_pic', 'INN', 'nalog_status', 'shopmetrics_id', 'mystery_id', 'telegram']
 
 class ContactForm(forms.Form):
     first_name = forms.CharField(max_length=30)

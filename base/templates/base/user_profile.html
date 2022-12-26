@@ -21,7 +21,7 @@
         <!-- Show User Username -->
         <p><strong>Имя пользователя:</strong> {{ profile.user.username }}</p><br><br>
 
-        <!-- Show Profile email -->
+        <!-- Show Profile Biography -->
         <p><strong>Почта для оплаты:</strong> {{ profile.email }}</p><br><br>
 
         <!-- Show Profile INN URL -->
@@ -44,13 +44,20 @@
         <a href="{% url 'bank131card' %}"><button class="button">Добавить карту для получения выплат</button></a>
         {% endif %}
 
-
-
-        <!-- Show Profile Telegram URL -->
+        <!-- Show Profile Telegram -->
         {% if profile.telegram %}
             <p><strong>Telegram:</strong> {{ profile.telegram }}</p><br><br>
         {% endif %}
 
+        <!-- Show Profile Shopmetrics_id -->
+        {% if profile.telegram %}
+            <p><strong>Shopmetrics_id:</strong> {{ profile.shopmetrics_id }}</p><br><br>
+        {% endif %}
+
+        <!-- Show Profile Mystery_id -->
+        {% if profile.mystery_id %}
+            <p><strong>Mystery_id:</strong> {{ profile.mystery_id }}</p><br><br>
+        {% endif %}
 
 
         <p><strong>Достижения:</strong></p><br><br>

@@ -1,4 +1,4 @@
-#!/Users/user/Desktop/Work/Django/web/TaskMaster/newenv/bin/python3
+#!/Users/user/Desktop/Work/Web_profpoint/newenv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

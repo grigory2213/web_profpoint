@@ -1,23 +1,24 @@
-import operator
-
+from django.contrib.auth import login
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import PasswordChangeView
+from django.core.mail import send_mail, BadHeaderError
+from django.db.models import Count, Q
 from django.http.response import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.urls import reverse_lazy
-from django.core.mail import send_mail, BadHeaderError
 from django.views.generic import View
-from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
-from django.contrib.auth.views import LoginView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm, UserChangeForm
-from django.contrib.auth.models import User
-from django.contrib.auth.views import PasswordChangeView
-from django.contrib.auth import login
-from django.db.models import Count, Q
-from datetime import datetime
-from .models import Task, Profile, Notion
+from django.views.generic.list import ListView
+
 from .forms import EditProfileForm, SignUpForm, TaskForm, NotionForm, ProfileForm, ContactForm
+from .models import Task, Profile, Notion
+
+from verify_email.email_handler import send_verification_email
+
 
 
 class CustomLoginView(LoginView):
@@ -39,8 +40,8 @@ class RegisterPage(FormView):
         user = form.save()
         if user is not None:
             login(self.request, user)
-        return super(RegisterPage, self).form_valid(form)
-     
+            inactive_user = send_verification_email(self.request, form)
+        return super(RegisterPage, self).form_valid(form)    
 
 
     def get(self, *args, **kwargs):
@@ -153,7 +154,16 @@ class CreateProfilePageView(CreateView):
     model = Profile
     
     template_name = 'base/create_profile.html'
-    fields = ['profile_pic', 'email', 'INN', 'nalog_status', 'telegram']
+    fields = ['profile_pic', 'email', 'INN', 'nalog_status', 'shopmetrics_id', 'mystery_id', 'telegram']
+    # base = sq.connect('db.sqlite3')
+    # cur = base.cursor()
+    # if base:
+    #     print('Base connected OK!')
+    # try:
+    #     print(cur.execute('SELECT * FROM people_base WHERE sm_id = 123412341234'))
+    # except:
+    #     pass
+    
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)

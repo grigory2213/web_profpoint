@@ -40,6 +40,9 @@ class Profile(models.Model):
         default=FIZLITCO,
     )
     telegram = models.CharField(max_length=50, null=True, blank=True)
+    shopmetrics_id = models.CharField(max_length=12, null=True, blank=True)
+    mystery_id = models.CharField(max_length=12, null=True, blank=True)
+    
 
     def __str__(self):  
         return str(self.user)

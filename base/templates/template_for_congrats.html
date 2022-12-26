@@ -1,0 +1,14 @@
+{% extends 'base/main.html' %}
+
+{% block content %}
+
+    <div class="header-bar">
+        <h1>Поздравляем</h1>
+    </div>
+
+    <div class="card-body">
+        <h1>Ваш email подтвержден! Спасибо!</h1>
+        <p>Все еще нет аккаунта? <a class="button" href="{% url 'register' %}">Зарегистрироваться</a></p>
+    </div>
+
+{% endblock content %}

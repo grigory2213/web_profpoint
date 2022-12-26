@@ -13,13 +13,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import myEnvVal
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-!-$6h+g)0(=w0hs8t=hg)zg18x6%$)%chw*f#k_5mtbvdj$hu='
@@ -39,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'base.apps.BaseConfig',
+    "verify_email.apps.VerifyEmailConfig",
     
     
 ]
@@ -56,7 +55,27 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'todo.urls'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+myEnvVal.setVar()
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER') 
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+
+HTML_MESSAGE_TEMPLATE = "/Users/user/Desktop/Work/Web_profpoint/base/templates/template_for_email.html"
+
+VERIFICATION_SUCCESS_TEMPLATE = "/Users/user/Desktop/Work/Web_profpoint/base/templates/template_for_congrats.html"
+
+# VERIFICATION_FAILED_TEMPLATE = "path/to/failed.html"
+
+# REQUEST_NEW_EMAIL_TEMPLATE = "path/to/email.html"
+
+# LINK_EXPIRED_TEMPLATE = 'path/to/expired.html'
+
+# NEW_EMAIL_SENT_TEMPLATE  = 'path/to/new_email_sent.html'
+
+DEFAULT_FROM_EMAIL = 'profpointdata@gmail.com'
 
 
 
